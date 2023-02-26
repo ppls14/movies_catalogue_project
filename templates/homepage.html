@@ -4,8 +4,15 @@
 
 <div class="row">
    <div class="col-lg-12 text-center">
-       <h1 class="mt-5">Witaj w mojej bibliotece filmów</h1>
+       <h1 class="mt-5">Witaj w bibliotece filmów</h1>
        <p class="lead">Znajdziesz tutaj tylko najlepsze tytuły!</p>
+   </div>
+
+   <div class="col-lg-12 mb-4 btn-group btn-group-toggle" data-toggle="buttons">
+    {%for list in movies_types_of_lists %}
+        <a href="{{ url_for('homepage', list_type=movies_types_of_lists[list]) }}" class="btn btn-outline-info {{'active' if current_list == movies_types_of_lists[list]}} " aria-pressed="true" >{{list}}</a>
+    {%endfor%}
+
    </div>
    {% for movie in movies %}
    <div class="col-lg-3 col-md-6 mb-4">
@@ -15,7 +22,7 @@
                <h4 class="card-title">{{ movie.title }}</h4>
            </div>
            <div class="card-footer text-center">
-               <a href="#" class="btn btn-primary">Pokaż więcej</a>
+               <a href="{{ url_for('movie_details', movie_id=movie.id) }}" class="btn btn-primary">Pokaż więcej</a>
            </div>
        </div>
    </div>
