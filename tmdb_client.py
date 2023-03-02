@@ -36,3 +36,12 @@ def get_movies(list_type, how_many=8):
     for _ in range(int(how_many)):
         movies.append(list_of_movie[_])
     return movies
+
+def get_movie_images(list_type="popular",amount_of_movies=8):
+    movies = get_movies(list_type, amount_of_movies)
+    movies_images = {}
+    for movie in movies:
+        movies_images.setdefault(movie['title'], get_poster_url(movie['poster_path'], size="w342"))
+    return movies_images
+
+
